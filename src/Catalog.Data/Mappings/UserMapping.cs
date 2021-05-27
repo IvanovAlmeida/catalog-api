@@ -31,13 +31,13 @@ namespace Catalog.Data.Mappings
 
             builder
                 .Property(p => p.CreatedAt)
-                .HasColumnType("datetime")
+                .HasColumnType("datetime2")
                 .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
 
             builder
                 .Property(p => p.DisabledAt)
-                .HasColumnType("datetime")
+                .HasColumnType("datetime2")
                 .IsRequired(false);
         }
     }

@@ -43,20 +43,22 @@ namespace Catalog.Data.Repository
 
         public virtual void Disable(int id)
         {
-            DbSet.Update(new TEntity
+            var entity = new TEntity
             {
                 Id = id,
                 DisabledAt = DateTime.Now
-            });
+            };
+            Db.Entry(entity).Property(p => p.DisabledAt).IsModified = true;
         }
 
         public virtual void Reactivate(int id)
         {
-            DbSet.Update(new TEntity
+            var entity = new TEntity
             {
                 Id = id,
                 DisabledAt = null
-            });
+            };
+            Db.Entry(entity).Property(p => p.DisabledAt).IsModified = true;
         }
 
         public virtual async Task<IEnumerable<Entity>> Find(Expression<Func<TEntity, bool>> predicate)
