@@ -37,6 +37,18 @@ namespace Catalog.Domain.Services
             return await _unitOfWork.Commit();
         }
 
+        public async Task<bool> Disable(int id)
+        {
+            _itemRepository.Disable(id);
+            return await _unitOfWork.Commit();
+        }
+
+        public async Task<bool> Reactivate(int id)
+        {
+            _itemRepository.Reactivate(id);
+            return await _unitOfWork.Commit();
+        }
+
         public void Dispose()
         {
             _itemRepository?.Dispose();

@@ -78,5 +78,39 @@ namespace Catalog.Domain.Tests
             _mocker.GetMock<IItemRepository>().Verify(m => m.Add(It.IsAny<Item>()), Times.Never);
             _mocker.GetMock<IUnitOfWork>().Verify(m => m.Commit(), Times.Never);
         }
+
+        [Fact(DisplayName = "Item deve desativar com sucesso")]
+        [Trait("Categoria", "Catalog")]
+        public async Task Item_Desativar_DeveDesativarComSucesso()
+        {
+            // Arrange
+            var itemId = 3;
+            _mocker.GetMock<IUnitOfWork>().Setup(r => r.Commit()).Returns(Task.FromResult(true));
+
+            // Act
+            var result = await _itemService.Disable(itemId);
+
+            // Assert
+            Assert.True(result);
+            _mocker.GetMock<IItemRepository>().Verify(r => r.Disable(It.IsAny<int>()), Times.Once);
+            _mocker.GetMock<IUnitOfWork>().Verify(r => r.Commit(), Times.Once);
+        }
+
+        [Fact(DisplayName = "Item deve reativar com sucesso")]
+        [Trait("Categoria", "Catalog")]
+        public async Task Item_Reativar_DeveReativarComSucesso()
+        {
+            // Arrange
+            var itemId = 3;
+            _mocker.GetMock<IUnitOfWork>().Setup(r => r.Commit()).Returns(Task.FromResult(true));
+
+            // Act
+            var result = await _itemService.Reactivate(itemId);
+
+            // Assert
+            Assert.True(result);
+            _mocker.GetMock<IItemRepository>().Verify(r => r.Reactivate(It.IsAny<int>()), Times.Once);
+            _mocker.GetMock<IUnitOfWork>().Verify(r => r.Commit(), Times.Once);
+        }
     }
 }
