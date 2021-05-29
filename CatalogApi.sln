@@ -5,11 +5,13 @@ VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EFCC7630-B788-49E7-B8E9-AA5532357D73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "src\Catalog.API\Catalog.API.csproj", "{4EB74E7F-BD38-4E32-BD88-5D96F02B025C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "src\Catalog.API\Catalog.API.csproj", "{4EB74E7F-BD38-4E32-BD88-5D96F02B025C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Data", "src\Catalog.Data\Catalog.Data.csproj", "{7547319C-BED7-4564-91EB-164F1D606198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Data", "src\Catalog.Data\Catalog.Data.csproj", "{7547319C-BED7-4564-91EB-164F1D606198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain", "src\Catalog.Domain\Catalog.Domain.csproj", "{A928B58A-A710-4246-B0DC-F4E6ECC1E161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "src\Catalog.Domain\Catalog.Domain.csproj", "{A928B58A-A710-4246-B0DC-F4E6ECC1E161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain.Tests", "tests\Catalog.Domain.Tests\Catalog.Domain.Tests.csproj", "{996BA7C9-DCAB-4F33-BE8C-3124DC998301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4EB74E7F-BD38-4E32-BD88-5D96F02B025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -60,10 +59,28 @@ Global
 		{A928B58A-A710-4246-B0DC-F4E6ECC1E161}.Release|x64.Build.0 = Release|Any CPU
 		{A928B58A-A710-4246-B0DC-F4E6ECC1E161}.Release|x86.ActiveCfg = Release|Any CPU
 		{A928B58A-A710-4246-B0DC-F4E6ECC1E161}.Release|x86.Build.0 = Release|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Debug|x64.Build.0 = Debug|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Debug|x86.Build.0 = Debug|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Release|x64.ActiveCfg = Release|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Release|x64.Build.0 = Release|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Release|x86.ActiveCfg = Release|Any CPU
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4EB74E7F-BD38-4E32-BD88-5D96F02B025C} = {EFCC7630-B788-49E7-B8E9-AA5532357D73}
 		{7547319C-BED7-4564-91EB-164F1D606198} = {EFCC7630-B788-49E7-B8E9-AA5532357D73}
 		{A928B58A-A710-4246-B0DC-F4E6ECC1E161} = {EFCC7630-B788-49E7-B8E9-AA5532357D73}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B13808E9-5D69-40DE-8C90-42D7F68DCB8F}
 	EndGlobalSection
 EndGlobal

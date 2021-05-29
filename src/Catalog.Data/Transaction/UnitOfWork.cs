@@ -13,14 +13,9 @@ namespace Catalog.Data.Transaction
             _context = context;
         }
 
-        public async Task Commit()
+        public async Task<bool> Commit()
         {
-            await _context.SaveChangesAsync();
-        }
-
-        public void Rollback()
-        {
-            //
+            return await _context.SaveChangesAsync() > 1;
         }
     }
 }
