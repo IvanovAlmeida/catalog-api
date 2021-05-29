@@ -9,15 +9,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Catalog.Domain.Tests
+namespace Catalog.Domain.Tests.Services
 {
-    public class ItemTest
+    public class ItemServiceTest
     {
         private readonly AutoMocker _mocker;
         private readonly ItemService _itemService;
         private readonly INotificator _notificator;
 
-        public ItemTest()
+        public ItemServiceTest()
         {
             _notificator = new Notificator();
 
