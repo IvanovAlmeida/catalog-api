@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Catalog.Domain.Interfaces;
 using Catalog.Domain.Models;
