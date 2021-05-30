@@ -1,12 +1,6 @@
-﻿using Catalog.Domain.Interfaces;
-using Catalog.Domain.Notifications;
+﻿using Catalog.Domain.Notifications;
 using Moq;
 using Moq.AutoMock;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Catalog.Domain.Tests

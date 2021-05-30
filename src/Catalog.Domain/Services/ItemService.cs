@@ -1,8 +1,9 @@
-﻿using Catalog.Domain.Interfaces;
+﻿using System.Threading.Tasks;
+
 using Catalog.Domain.Models;
-using Catalog.Domain.Models.Validations;
+using Catalog.Domain.Interfaces;
 using Catalog.Domain.Notifications;
-using System.Threading.Tasks;
+using Catalog.Domain.Models.Validations;
 
 namespace Catalog.Domain.Services
 {
@@ -34,6 +35,23 @@ namespace Catalog.Domain.Services
 
             _itemRepository.Add(item);
 
+            return await _unitOfWork.Commit();
+        }
+
+        public async Task<bool> Update(Item item)
+        {
+            var itemValidation = new ItemValidation();
+            var validationResult = itemValidation.Validate(item);
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                    _notificator.Handle(new Notification(error.ErrorMessage));
+
+                return false;
+            }
+
+            _itemRepository.Update(item);
             return await _unitOfWork.Commit();
         }
 
