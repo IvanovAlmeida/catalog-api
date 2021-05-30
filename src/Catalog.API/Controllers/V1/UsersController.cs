@@ -5,6 +5,7 @@ using AutoMapper;
 using Catalog.API.ViewModels;
 using Catalog.Domain.Interfaces;
 using Catalog.Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers.V1
@@ -36,7 +37,8 @@ namespace Catalog.API.Controllers.V1
         {
             try
             {
-                var user = await _userService.Add(_mapper.Map<User>(userModel));
+                var user = _mapper.Map<User>(userModel);
+                await _userService.Add(user);                
 
                 return Ok(new {
                     status = true,

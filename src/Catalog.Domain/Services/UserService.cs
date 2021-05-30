@@ -3,6 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Catalog.Domain.Interfaces;
 using Catalog.Domain.Models;
+using Catalog.Domain.Models.Validations;
+using Catalog.Domain.Notifications;
+using Microsoft.AspNetCore.Identity;
 
 namespace Catalog.Domain.Services
 {
@@ -10,29 +13,38 @@ namespace Catalog.Domain.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
+        private readonly INotificator _notificator;
 
-        public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository)
+        public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, INotificator notificator)
         {
             _unitOfWork = unitOfWork;
             _userRepository = userRepository;
+            _notificator = notificator;
         }
 
-        public async Task<User> Add(User user)
+        public async Task<bool> Add(User user)
         {
-            var userNameExists = (await _userRepository.Find(u => u.Username.Equals(user.Username))).Any();
-            if(userNameExists)
-                throw new Exception("Nome de Usuário já cadastrado!");
+            var userValidation = new UserValidation(_userRepository);
 
-            var emailExists = (await _userRepository.Find(u => u.Email.Equals(user.Email))).Any();
-            if(emailExists)
-                throw new Exception("Email já cadastrado!");
+            var validationResult = await userValidation.ValidateAsync(user);
+
+            if (!validationResult.IsValid)
+            {
+                foreach(var error in validationResult.Errors)
+                {
+                    _notificator.Handle(new Notification(error.ErrorMessage));
+                }
+
+                return false;
+            }
+
+            var passwordHashser = new PasswordHasher<User>();
+            user.Password = passwordHashser.HashPassword(user, user.Password);
 
             _userRepository.Add(user);
-            await _unitOfWork.Commit();
-
-            return user;
+            return await _unitOfWork.Commit();
         }
-
+        
         public void Dispose()
         {
             _userRepository?.Dispose();

@@ -1,15 +1,22 @@
+using Catalog.API.Extensions;
 using Catalog.Data.Context;
 using Catalog.Data.Repository;
 using Catalog.Data.Transaction;
 using Catalog.Domain.Interfaces;
+using Catalog.Domain.Models;
 using Catalog.Domain.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Text;
 
 namespace Catalog.API
 {
@@ -32,9 +39,39 @@ namespace Catalog.API
         {
             services.AddDbContext<DataDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
 
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services
+                .AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = true;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidAudience = appSettings.ValidoEm,
+                        ValidIssuer = appSettings.Emissor
+                    };
+                });
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IUserRepository, IUserRepository>();
+            services.AddScoped<IItemRepository, IItemRepository>();
 
             services.AddAutoMapper(typeof(Startup));
 

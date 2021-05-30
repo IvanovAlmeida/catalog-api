@@ -11,7 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Data", "src\Catalog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "src\Catalog.Domain\Catalog.Domain.csproj", "{A928B58A-A710-4246-B0DC-F4E6ECC1E161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain.Tests", "tests\Catalog.Domain.Tests\Catalog.Domain.Tests.csproj", "{996BA7C9-DCAB-4F33-BE8C-3124DC998301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain.Tests", "tests\Catalog.Domain.Tests\Catalog.Domain.Tests.csproj", "{996BA7C9-DCAB-4F33-BE8C-3124DC998301}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CD7220DB-D86B-486E-B08E-8946E5D3B548}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{995C96C5-640D-4726-937F-F512B1C6C96C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +86,7 @@ Global
 		{4EB74E7F-BD38-4E32-BD88-5D96F02B025C} = {EFCC7630-B788-49E7-B8E9-AA5532357D73}
 		{7547319C-BED7-4564-91EB-164F1D606198} = {EFCC7630-B788-49E7-B8E9-AA5532357D73}
 		{A928B58A-A710-4246-B0DC-F4E6ECC1E161} = {EFCC7630-B788-49E7-B8E9-AA5532357D73}
+		{996BA7C9-DCAB-4F33-BE8C-3124DC998301} = {CD7220DB-D86B-486E-B08E-8946E5D3B548}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B13808E9-5D69-40DE-8C90-42D7F68DCB8F}

@@ -1,13 +1,14 @@
-﻿using Catalog.Domain.Interfaces;
-using Catalog.Domain.Models;
-using Catalog.Domain.Models.Validations;
-using Catalog.Domain.Notifications;
-using Catalog.Domain.Services;
-using Moq;
-using Moq.AutoMock;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Moq;
 using Xunit;
+using System.Linq;
+using Moq.AutoMock;
+using System.Threading.Tasks;
+
+using Catalog.Domain.Models;
+using Catalog.Domain.Services;
+using Catalog.Domain.Interfaces;
+using Catalog.Domain.Notifications;
+using Catalog.Domain.Models.Validations;
 
 namespace Catalog.Domain.Tests.Services
 {
@@ -28,7 +29,7 @@ namespace Catalog.Domain.Tests.Services
         }
 
         [Fact(DisplayName = "Item deve inserir com sucesso")]
-        [Trait("Categoria", "Catalog")]
+        [Trait("Categoria", "Service - Catalog")]
         public async Task Item_ItemValido_DeveInserirComSucesso()
         {
             // Arrange
@@ -53,7 +54,7 @@ namespace Catalog.Domain.Tests.Services
         }
 
         [Fact(DisplayName = "Item deve retornar erro ao inserir")]
-        [Trait("Categoria", "Catalog")]
+        [Trait("Categoria", "Service - Catalog")]
         public async Task Item_ItemInvalido_DeveRetornarErroAoInserir()
         {
             // Arrange
@@ -80,7 +81,7 @@ namespace Catalog.Domain.Tests.Services
         }
 
         [Fact(DisplayName = "Item deve desativar com sucesso")]
-        [Trait("Categoria", "Catalog")]
+        [Trait("Categoria", "Service - Catalog")]
         public async Task Item_Desativar_DeveDesativarComSucesso()
         {
             // Arrange
@@ -97,7 +98,7 @@ namespace Catalog.Domain.Tests.Services
         }
 
         [Fact(DisplayName = "Item deve reativar com sucesso")]
-        [Trait("Categoria", "Catalog")]
+        [Trait("Categoria", "Service - Catalog")]
         public async Task Item_Reativar_DeveReativarComSucesso()
         {
             // Arrange
